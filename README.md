@@ -2,6 +2,10 @@
 
 SA-MP scripting playground.
 
+# Demo
+
+Demo available here: http://slice-vps.nl:7070/
+
 # Installing
 
 ## Windows
