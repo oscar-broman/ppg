@@ -15,4 +15,4 @@ Not fully supported yet.
 3. Install [winetricks](http://wiki.winehq.org/winetricks).
 4. Run `winetricks vcrun2005 vcrun2010` to install the necessary runtimes.
 5. Clone this repo and run `npm install` inside it.
-6. Run `./bin/run-webserver.js`.
+6. Run `lib/ppg.js`.
