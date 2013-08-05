@@ -1,0 +1,37 @@
+{
+  "name": "ppg",
+  "author": "Oscar Broman <oscar.broman@gmail.com>",
+  "version": "0.2.0",
+  "description": "SA-MP scripting playground",
+  "preferGlobal": true,
+  "main": "lib/ppg.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "jshint .",
+    "postinstall": "sass public/css/ppg.scss public/css/ppg.css"
+  },
+  "bin": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/oscar-broman/ppg.git"
+  },
+  "keywords": [
+    "samp",
+    "pawn",
+    "web",
+    "server"
+  ],
+  "dependencies": {
+    "samp-server": ">=0.1.0",
+    "express": ">=3.2.6",
+    "socket.io": ">=0.9.14"
+  },
+  "licenses": [
+    {
+      "type": "MIT +no-false-attribs",
+      "url": "https://github.com/oscar-broman/ppg/raw/master/LICENSE"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>PPG</title>
+  <style type="text/css">
+    body {
+      opacity: 0;
+    }
+  </style>
+  <link rel="stylesheet" href="css/ppg.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+</head>
+<body>
+  <div id="sidebar">
+    
+  </div>
+  <div id="content">
+    <div id="topbar">
+      <div class="btn-group" id="run-btn">
+        <button id="run-code" class="btn btn-primary" disabled>Run</button>
+        <button class="btn btn-primary dropdown-toggle"  disabled data-toggle="dropdown">
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="#">Show assembler output</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="editor">
+      <div id="editor-field">#include &lt;a_samp&gt;
+
+main() {
+    SetTimer("Test", 250, true);
+}
+
+forward Test();
+public Test() {
+    static i = 0;
+    
+    printf("hello %d", i++);
+}</div>
+    </div>
+    <div id="output">
+      <div class="separator"></div>
+      <div class="scroller">
+        <pre id="output-field"></pre>
+      </div>
+      <div class="prompt"><span class="gt">&gt;</span><input type="text" id="output-prompt"></div>
+    </div>
+  </div>
+  <script src="socket.io/socket.io.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/ace-builds/src-min-noconflict/ace.js"></script>
+  <script src="js/ppg-main.js"></script>
+  <script src="js/ppg-editor.js"></script>
+  <script src="js/ppg-output.js"></script>
+  <script src="js/ppg-run.js"></script>
+</body>
+</html>
