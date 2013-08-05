@@ -9,8 +9,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "jshint .",
-    "postinstall": "sass public/css/ppg.scss public/css/ppg.css"
+    "test": "jshint ."
   },
   "bin": {},
   "repository": {
