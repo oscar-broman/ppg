@@ -1,0 +1,15 @@
+*
+!.gitignore
+!a_http.inc
+!a_npc.inc
+!a_objects.inc
+!a_players.inc
+!a_samp.inc
+!a_sampdb.inc
+!a_vehicles.inc
+!core.inc
+!datagram.inc
+!file.inc
+!float.inc
+!string.inc
+!time.inc
