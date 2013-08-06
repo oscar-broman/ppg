@@ -9,7 +9,8 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "jshint ."
+    "test": "jshint .",
+    "start": "node lib/ppg.js"
   },
   "bin": {},
   "repository": {
