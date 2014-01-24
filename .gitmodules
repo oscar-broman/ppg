@@ -1,0 +1,3 @@
+[submodule "include/samp-introspect"]
+	path = include/samp-introspect
+	url = https://github.com/oscar-broman/samp-introspect.git

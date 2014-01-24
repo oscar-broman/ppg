@@ -13,3 +13,5 @@
 !float.inc
 !string.inc
 !time.inc
+!samp-introspect
+!amx-assembly
