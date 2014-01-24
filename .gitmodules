@@ -2,5 +2,5 @@
 	path = include/samp-introspect
 	url = https://github.com/oscar-broman/samp-introspect.git
 [submodule "include/amx-assembly"]
-	path = include/amx-assembly
+	path = include/amx
 	url = https://github.com/Zeex/amx_assembly.git
