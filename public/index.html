@@ -25,6 +25,14 @@
     </div>
     <div id="editor">
       <div id="editor-field">#include &lt;a_samp&gt;
+#include &lt;ppg&gt;
+
+/*
+  Shortcuts:
+    * Ctrl+Shift+R - run the code
+    * Ctrl+Shift+S - stop the server
+    * Ctrl+Shift+F - switch focus between the editor and the prompt at the bottom
+*/
 
 main() {
     SetTimer("Test", 250, true);
@@ -42,7 +50,7 @@ public Test() {
       <div class="scroller">
         <pre id="output-field"></pre>
       </div>
-      <div class="prompt"><span class="gt">&gt;</span><input type="text" id="output-prompt"></div>
+      <div class="prompt"><span class="gt">&gt;</span><input type="text" id="output-prompt" placeholder="print(&quot;hello&quot;)"></div>
     </div>
   </div>
   <script src="socket.io/socket.io.js"></script>
