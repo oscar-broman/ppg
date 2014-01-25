@@ -27,6 +27,10 @@ window.PPG = (function (self) {
     return editor.getValue();
   };
   
+  self.setEditorFocus = function() {
+    editor.focus();
+  };
+  
 	$(window).on({
 	  unload: function(e) {
       localStorage.setItem('editorText', self.getEditorValue());

@@ -53,8 +53,15 @@ window.PPG = (function (self) {
         $('#stop-run').trigger('click');
         
         return false;
-      } else if (e.which === 69) { // E
-        $('#output-prompt').focus();
+      } else if (e.which === 70) { // F
+        if ($('#output-prompt').is(':focus')) {
+          self.setEditorFocus();
+        } else {
+          $('#output-prompt').focus();
+        }
+        
+        
+        return false;
       }
     }
   });
