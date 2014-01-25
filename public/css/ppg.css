@@ -12,6 +12,9 @@ body {
     -moz-animation: body-splash 0.5s ease;
     animation: body-splash 0.5s ease; }
 
+[placeholder]:focus::-webkit-input-placeholder {
+  opacity: 0; }
+
 @-webkit-keyframes body-splash {
   0% {
     opacity: 0; } }
@@ -128,7 +131,7 @@ body {
     #output .prompt input {
       display: block;
       width: 100%;
-      height: 26px;
+      height: 29px;
       margin-top: 2px;
       margin: 0;
       padding: 0;
@@ -138,3 +141,5 @@ body {
       background: #fff;
       border-radius: 0;
       outline: none; }
+      #output .prompt input:focus {
+        background: #eef; }
