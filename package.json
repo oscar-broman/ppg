@@ -1,7 +1,7 @@
 {
   "name": "ppg",
   "author": "Oscar Broman <oscar.broman@gmail.com>",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "SA-MP scripting playground",
   "preferGlobal": true,
   "main": "lib/ppg.js",
