@@ -34,21 +34,19 @@
     * Ctrl+Shift+F - switch focus between the editor and the prompt at the bottom
 */
 
-new g_Timer = -1;
-
 main() {
-    g_Timer = SetTimer("Test", 250, true);
+    SetTimer("Test", 150, true);
+    
+    Test();
 }
 
 forward Test();
 public Test() {
     static i = 0;
     
-    printf("hello %d", ++i);
-    
-    if (i == 5) {
-        KillTimer(g_Timer);
-        
+    if (++i &lt; 6) {
+        printf("hello %d", i);
+    } else if (i == 6) {
         print("\nType this in the prompt below and press enter:\n  print(\"test!\")");
     }
 }</div>
