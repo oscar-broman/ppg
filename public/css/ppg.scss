@@ -43,6 +43,23 @@ body {
   
   @include box-sizing(border-box);
   @include linear-gradient(to right, #eee, #fafafa);
+  
+  h1 {
+    font-size: 14pt;
+  }
+  
+  .file-list {
+    margin: 10px;
+    
+    .newfile {
+      font-weight: bold;
+      font-style: italic;
+    }
+  }
+}
+
+.ace_gutter-layer {
+  min-width: 50px;
 }
 
 #content {
@@ -60,6 +77,13 @@ body {
   
   @include linear-gradient(to bottom, #fff, #e5e5e5);
   @include box-sizing(border-box);
+  
+  .action-buttons {
+    button {
+      height: 32px;
+      outline: 0;
+    }
+  }
 }
 
 #editor {

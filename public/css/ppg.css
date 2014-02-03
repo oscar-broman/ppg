@@ -18,19 +18,15 @@ body {
 @-webkit-keyframes body-splash {
   0% {
     opacity: 0; } }
-
 @-moz-keyframes body-splash {
   0% {
     opacity: 0; } }
-
 @-o-keyframes body-splash {
   0% {
     opacity: 0; } }
-
 @keyframes body-splash {
   0% {
     opacity: 0; } }
-
 #sidebar {
   float: left;
   width: 250px;
@@ -43,6 +39,16 @@ body {
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, #fafafa));
   background-image: -webkit-linear-gradient(left, #eeeeee, #fafafa);
   background-image: linear-gradient(to right,#eeeeee, #fafafa); }
+  #sidebar h1 {
+    font-size: 14pt; }
+  #sidebar .file-list {
+    margin: 10px; }
+    #sidebar .file-list .newfile {
+      font-weight: bold;
+      font-style: italic; }
+
+.ace_gutter-layer {
+  min-width: 50px; }
 
 #content {
   height: 100%;
@@ -62,6 +68,9 @@ body {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
+  #topbar .action-buttons button {
+    height: 32px;
+    outline: 0; }
 
 #editor {
   position: absolute;

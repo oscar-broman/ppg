@@ -14,42 +14,23 @@
 </head>
 <body>
   <div id="sidebar">
-    
+    <div class="file-list">
+      <h1>Files</h1>
+      <div class="list-group" id="files">
+      </div>
+    </div>
   </div>
   <div id="content">
     <div id="topbar">
-      <div id="run-buttons">
-        <button id="run-code" class="btn btn-primary" disabled>Run</button>
-        <button id="stop-run" class="btn btn-danger" disabled>Stop</button>
+      <div class="action-buttons">
+        <button id="run-code" class="btn btn-primary" disabled><i class="fa fa-play"></i> Run</button>
+        <button id="stop-run" class="btn btn-danger" disabled><i class="fa fa-stop"></i> Stop</button>
+        <button id="save" class="btn btn-default"><i class="fa fa-save"></i> Save</button>
+        <!-- <button id="save" class="btn btn-default"><i class="fa fa-github"></i> Publish</button> -->
       </div>
     </div>
     <div id="editor">
-      <div id="editor-field">#include &lt;a_samp&gt;
-#include &lt;ppg&gt;
-
-/*
-  Shortcuts:
-    * Ctrl+Shift+R - run the code
-    * Ctrl+Shift+S - stop the server
-    * Ctrl+Shift+F - switch focus between the editor and the prompt at the bottom
-*/
-
-main() {
-    SetTimer("Test", 150, true);
-    
-    Test();
-}
-
-forward Test();
-public Test() {
-    static i = 0;
-    
-    if (++i &lt; 6) {
-        printf("hello %d", i);
-    } else if (i == 6) {
-        print("\nType this in the prompt below and press enter:\n  print(\"test!\")");
-    }
-}</div>
+      <div id="editor-field"></div>
     </div>
     <div id="output">
       <div class="separator"></div>
