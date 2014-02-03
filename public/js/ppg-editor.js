@@ -91,7 +91,7 @@ window.PPG = (function (self) {
           '    if (++i < 6) {\n' +
           '        printf("hello %d", i);\n' +
           '    } else if (i == 6) {\n' +
-          '        print("\nType this in the prompt below and press enter:\n  print(\"test!\")");\n' +
+          '        print("\\nType this in the prompt below and press enter:\\n  print(\\"test!\\")");\n' +
           '    }\n' +
           '}'
       }
