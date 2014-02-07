@@ -57,6 +57,12 @@ window.PPG = (function (self) {
   self.getEditorValue = function() {
     return editor.getValue();
   };
+  
+  self.getEditorCursor = function() {
+    var c = editor.selection.getCursor();
+    
+    return [c.row, c.column];
+  };
 
   self.setEditorFocus = function() {
     editor.focus();
@@ -103,6 +109,10 @@ window.PPG = (function (self) {
   if (self.activeFile) {
     editor.setValue(self.files[self.activeFile].code);
     editor.clearSelection();
+    
+    if (self.files[self.activeFile].cursor) {
+      editor.moveCursorTo.apply(editor, self.files[self.activeFile].cursor);
+    }
   } else if (localStorage.editorText) {
     editor.setValue(localStorage.editorText);
     editor.clearSelection();
@@ -112,6 +122,7 @@ window.PPG = (function (self) {
     editor.clearSelection();
   }
   
+  self.setEditorFocus();
   self.updateFileList();
   
   $('#save').on({
@@ -131,7 +142,8 @@ window.PPG = (function (self) {
       }
       
       self.files[self.activeFile] = {
-        code: self.getEditorValue()
+        code: self.getEditorValue(),
+        cursor: self.getEditorCursor()
       };
       
       self.updateFileList();
@@ -152,6 +164,8 @@ window.PPG = (function (self) {
     } else {
       var code = self.getEditorValue();
       
+      self.files[self.activeFile].cursor = self.getEditorCursor();
+      
       if (code !== self.files[self.activeFile].code) {
         if (confirm('Save the current code?')) {
           $('#save').trigger('click');
@@ -164,6 +178,12 @@ window.PPG = (function (self) {
     if (self.activeFile) {
       editor.setValue(self.files[self.activeFile].code);
       editor.clearSelection();
+      
+      if (self.files[self.activeFile].cursor) {
+        editor.moveCursorTo.apply(editor, self.files[self.activeFile].cursor);
+      }
+      
+      self.setEditorFocus();
     } else {
       editor.setValue(
         DEFAULT_CODE
