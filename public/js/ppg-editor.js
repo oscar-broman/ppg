@@ -199,6 +199,8 @@ window.PPG = (function (self) {
 	$(window).on({
 	  unload: function(e) {
       if (self.activeFile) {
+        self.files[self.activeFile].cursor = self.getEditorCursor();
+        
         localStorage.setItem('editorText', '');
         localStorage.setItem('activeFile', self.activeFile);
       } else {
@@ -207,7 +209,22 @@ window.PPG = (function (self) {
       }
       
       localStorage.setItem('files', JSON.stringify(self.files));
-	  }
+	  },
+    beforeunload: function(e) {
+      var code = self.getEditorValue();
+      
+      if (self.activeFile === null) {
+        if (!code || code === DEFAULT_CODE) {
+          return;
+        }
+      } else {
+        if (code === self.files[self.activeFile].code) {
+          return;
+        }
+      }
+      
+      return 'Your unsaved changes will be lost!';
+    }
 	});
 
   return self;
