@@ -1,5 +1,12 @@
 {
   "name": "ppg",
   "version": "0.2.1",
-  "dependencies": {}
+  "dependencies": {
+    "ace-builds": "latest",
+    "jquery": "latest",
+    "bootstrap": "latest",
+    "bourbon": "v3.2.0-beta.2",
+    "font-awesome": "latest",
+    "bootswatch": "latest"
+  }
 }

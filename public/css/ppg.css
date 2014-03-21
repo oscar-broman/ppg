@@ -1,0 +1,120 @@
+body,
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; }
+
+button,
+input,
+select,
+textarea,
+a {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent; }
+
+.btn .fa {
+  margin-right: .5em; }
+
+.app {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  -webkit-transform: scale3d(0, 0, 1);
+  -moz-transform: scale3d(0, 0, 1);
+  -ms-transform: scale3d(0, 0, 1);
+  -o-transform: scale3d(0, 0, 1);
+  transform: scale3d(0, 0, 1);
+  -webkit-transition-property: -webkit-transform, opacity;
+  -moz-transition-property: -moz-transform, opacity;
+  transition-property: transform, opacity;
+  -webkit-transition-duration: 0.6s;
+  -moz-transition-duration: 0.6s;
+  transition-duration: 0.6s;
+  -webkit-transition-delay: 0.1s;
+  -moz-transition-delay: 0.1s;
+  transition-delay: 0.1s;
+  -webkit-transition-timing-function: cubic-bezier(0.48, 0.14, 0.07, 0.99);
+  -moz-transition-timing-function: cubic-bezier(0.48, 0.14, 0.07, 0.99);
+  transition-timing-function: cubic-bezier(0.48, 0.14, 0.07, 0.99); }
+  .visible .app {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    -moz-transform: scale3d(1, 1, 1);
+    -ms-transform: scale3d(1, 1, 1);
+    -o-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1); }
+  .app .sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 250px;
+    overflow-y: auto;
+    border-right: 1px solid #444444;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: white;
+    background-image: -webkit-linear-gradient(left, white, #eeeeee);
+    background-image: linear-gradient(to right,white, #eeeeee); }
+  .app .main {
+    position: absolute;
+    top: 0;
+    left: 250px;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+    -webkit-flex: 1;
+    -moz-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    -webkit-flex-flow: column nowrap;
+    -moz-flex-flow: column nowrap;
+    flex-flow: column nowrap; }
+    .app .main .toolbar {
+      height: 50px;
+      line-height: 47px;
+      min-height: 50px;
+      border-bottom: 1px solid #444444;
+      padding-left: 8px;
+      width: 100%;
+      background-color: white;
+      background-image: -webkit-linear-gradient(white, #e5e5e5);
+      background-image: linear-gradient(white, #e5e5e5); }
+    .app .main .editor {
+      background: #fff;
+      min-height: 100px;
+      width: 100%;
+      -webkit-box-flex: 1;
+      -moz-box-flex: 1;
+      box-flex: 1;
+      -webkit-flex: 1;
+      -moz-flex: 1;
+      -ms-flex: 1;
+      flex: 1; }
+    .app .main .output {
+      background: #ddd;
+      height: 300px;
+      min-height: 122px;
+      width: 100%; }
+      .app .main .output .separator {
+        height: 23px;
+        border: 1px solid #444444;
+        border-style: solid none;
+        cursor: resize;
+        cursor: ns-resize;
+        background-color: #fefefe;
+        background-image: -webkit-linear-gradient(#fefefe 0%, #f1f1f1 50%, #e1e1e1 50%, #e0e0e0 100%);
+        background-image: linear-gradient(#fefefe 0%, #f1f1f1 50%, #e1e1e1 50%, #e0e0e0 100%); }
