@@ -1,4 +1,4 @@
-@import '../components/bourbon/dist/bourbon';
+@import '../components/bourbon/app/assets/stylesheets/bourbon';
 
 
 $splashDuration: .6s;
@@ -70,9 +70,6 @@ a {
     right: 0;
     bottom: 0;
     height: 100%;
-    @include display(flex);
-    @include flex(1);
-    @include flex-flow(column nowrap);
 
     .toolbar {
       height: $toolbarHeight;
@@ -86,16 +83,20 @@ a {
 
     .editor {
       background: #fff;
-      min-height: 100px;
       width: 100%;
-      @include flex(1);
+      position: absolute;
+      top: $toolbarHeight;
+      bottom: 0;
+      overflow: hidden;
     }
 
     .output {
       background: #ddd;
       height: 300px;
-      min-height: 122px;
       width: 100%;
+      position: absolute;
+      bottom: 0;
+      min-height: 100px !important;
 
       .separator {
         height: 23px;
