@@ -2,11 +2,10 @@
   "name": "ppg",
   "version": "0.2.1",
   "dependencies": {
-    "ace-builds": "latest",
     "jquery": "latest",
     "bootstrap": "latest",
     "bourbon": "latest",
     "font-awesome": "latest",
-    "bootswatch": "latest"
+    "codemirror": "latest"
   }
 }
