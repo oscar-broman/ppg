@@ -294,6 +294,28 @@ window.PPG = (function (self) {
       name: 'New document'
     }];
 
+    if (localStorage.files) {
+      var files = JSON.parse(localStorage.files);
+      var time = +new Date();
+      var i = 0;
+
+      for (var key in files) {
+        if (!files.hasOwnProperty(key)) {
+          continue;
+        }
+
+        docs.push({
+          name: key,
+          errors: [],
+          uid: time + (++i),
+          cmDoc: new CodeMirror.Doc(files[key].code, 'text/x-pawn')
+        });
+      }
+
+      localStorage.filesBak = localStorage.files;
+      localStorage.removeItem('files');
+    }
+
     plainDocs.forEach(function (doc) {
       var cmDoc = new CodeMirror.Doc(doc.value, 'text/x-pawn');
 
