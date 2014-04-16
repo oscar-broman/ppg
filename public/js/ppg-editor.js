@@ -6,6 +6,7 @@ window.PPG = (function (self) {
   var $editor = $app.find('.main > .editor');
   var $documentList = $app.find('.document-list');
 
+  var lintErrors = [];
   var cm = CodeMirror($editor.get(0), {
     autoCloseBrackets: true,
     autofocus: true,
@@ -13,6 +14,7 @@ window.PPG = (function (self) {
     foldGutter: true,
     gutters: [
       'CodeMirror-linenumbers',
+      'CodeMirror-lint-markers',
       'CodeMirror-foldgutter'
     ],
     highlightSelectionMatches: true,
@@ -24,7 +26,19 @@ window.PPG = (function (self) {
     showCursorWhenSelecting: true,
     smartIndent: true,
     tabSize: 4,
-    theme: 'default pawn'
+    theme: 'default pawn',
+    lint: {
+      getAnnotations: function() {
+        return lintErrors.map(function(err) {
+          return {
+            from: CodeMirror.Pos(err.startLine - 1, 0),
+            to: CodeMirror.Pos(err.endLine - 1, 0),
+            message: err.message,
+            severity: err.type
+          };
+        });
+      }
+    }
   });
 
   var saveTimeout = null;
@@ -41,10 +55,8 @@ window.PPG = (function (self) {
     }, 250);
   }
 
-
   cm.on('change', setSaveTimeout);
   cm.on('cursorActivity', setSaveTimeout);
-
 
   var demoDoc = new CodeMirror.Doc(
     [
@@ -102,6 +114,37 @@ window.PPG = (function (self) {
 
   setActiveDocument(findActiveDoc() || 1);
 
+  var lintWidgets = [];
+
+  self.clearEditorErrors = function() {
+    lintErrors = [];
+
+    CodeMirror.startLinting(cm);
+  };
+
+  self.setEditorErrors = function(errors) {
+    lintErrors = errors;
+    docs[activeDoc].errors = errors;
+
+    CodeMirror.startLinting(cm);
+
+    // for (var i = 0; i < errors.length; i++) {
+    //   var err = errors[i];
+    //   var msg = document.createElement('div');
+    //   var icon = msg.appendChild(document.createElement('span'));
+    //
+    //   icon.innerHTML = '!!';
+    //   icon.className = 'lint-error-icon';
+    //   msg.appendChild(document.createTextNode(err.message));
+    //   msg.className = 'lint-error';
+    //
+    //   lintWidgets.push(cm.addLineWidget(err.startLine - 1, msg, {
+    //     coverGutter: false,
+    //     noHScroll: true
+    //   }));
+    // }
+  };
+
   function setActiveDocument(doc) {
     var save = false;
 
@@ -143,6 +186,14 @@ window.PPG = (function (self) {
 
     activeDoc = doc;
     cm.swapDoc(docs[doc].cmDoc);
+
+    if (docs[doc].errors) {
+      lintErrors = docs[doc].errors;
+    } else {
+      lintErrors = [];
+    }
+
+    CodeMirror.startLinting(cm);
 
     syncDocumentList();
 
@@ -202,6 +253,7 @@ window.PPG = (function (self) {
 
       plainDocs.push({
         name: doc.name,
+        errors: doc.errors || [],
         uid: doc.uid,
         value: doc.cmDoc.getValue(),
         cursor: doc.cmDoc.getCursor(),
@@ -254,6 +306,7 @@ window.PPG = (function (self) {
 
       docs.push({
         name: doc.name,
+        errors: doc.errors,
         uid: doc.uid,
         cmDoc: cmDoc
       });
@@ -313,7 +366,19 @@ window.PPG = (function (self) {
     cm.setSize('100%', '100%');
   };
 
+  self.getCurrentCode = function() {
+    return cm.getValue();
+  };
+
   $(window).on({
+    load: function(e) {
+      cm.on('change', function() {
+        if (lintErrors.length) {
+          self.clearEditorErrors();
+          docs[activeDoc].errors = [];
+        }
+      });
+    },
     resize: function(e) {
       self.updateEditorSize();
     },

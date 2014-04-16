@@ -93,6 +93,20 @@ a {
         background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fefefe), color-stop(50%, #f1f1f1), color-stop(50%, #e1e1e1), color-stop(100%, #e0e0e0));
         background-image: -webkit-linear-gradient(#fefefe 0%, #f1f1f1 50%, #e1e1e1 50%, #e0e0e0 100%);
         background-image: linear-gradient(#fefefe 0%, #f1f1f1 50%, #e1e1e1 50%, #e0e0e0 100%); }
+      .app .main .output .scroller {
+        overflow: scroll;
+        position: absolute;
+        top: 24px;
+        bottom: 0;
+        left: 0;
+        right: 0; }
+        .app .main .output .scroller pre {
+          margin: 6px; }
+          .app .main .output .scroller pre.server-log {
+            border: none;
+            box-shadow: none;
+            background: transparent;
+            text-shadow: 0 1px #fff; }
 
 .CodeMirror.cm-s-pawn .cm-comment {
   color: #272; }
