@@ -27,7 +27,8 @@
     "samp-server": ">=0.1.7",
     "express": ">=3.2.6",
     "socket.io": ">=0.9.14",
-    "async": ">=0.2.9"
+    "async": ">=0.2.9",
+    "nodemon": ">=1.0.17"
   },
   "licenses": [
     {
