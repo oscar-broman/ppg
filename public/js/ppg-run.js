@@ -20,8 +20,7 @@ window.PPG = (function (self) {
     self.clearEditorErrors();
 
     running = true;
-    $('#run-code').attr('disabled', true);
-    $('#stop-run').removeAttr('disabled');
+    $('#run-code,#stop-run').attr('disabled', true);
 
     socket.emit('run-code', {
       code: self.getCurrentCode(),
@@ -55,7 +54,9 @@ window.PPG = (function (self) {
       return;
     }
 
-    $('#run-code').removeAttr('disabled');
+    $('#run-code,#stop-run')
+      .addClass('running')
+      .removeAttr('disabled');
 
     if (!output.data.trim()) {
       $compilerOutput.hide();
@@ -85,7 +86,9 @@ window.PPG = (function (self) {
       return;
     }
 
-    $('#run-code').removeAttr('disabled');
+    $('#run-code,#stop-run')
+      .addClass('running')
+      .removeAttr('disabled');
 
     $serverLog.append(
       $('<span/>').text(output.data)
@@ -103,7 +106,9 @@ window.PPG = (function (self) {
 
     running = false;
 
-    $('#run-code').removeAttr('disabled');
+    $('#run-code')
+      .removeAttr('disabled')
+      .removeClass('running');
     $('#stop-run').attr('disabled', true);
   });
 

@@ -94,6 +94,21 @@ a {
       @include linear-gradient(#fff, #e5e5e5);
     }
 
+    #run-code {
+      .fa {
+        width: 13px;
+      }
+
+      .fa-repeat,
+      &.running .fa-play {
+        display: none;
+      }
+
+      &.running .fa-repeat {
+        display: inline-block;
+      }
+    }
+
     .editor {
       background: #fff;
       width: 100%;

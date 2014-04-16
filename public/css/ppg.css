@@ -67,6 +67,12 @@ a {
       background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #e5e5e5));
       background-image: -webkit-linear-gradient(white, #e5e5e5);
       background-image: linear-gradient(white, #e5e5e5); }
+    .app .main #run-code .fa {
+      width: 13px; }
+    .app .main #run-code .fa-repeat, .app .main #run-code.running .fa-play {
+      display: none; }
+    .app .main #run-code.running .fa-repeat {
+      display: inline-block; }
     .app .main .editor {
       background: #fff;
       width: 100%;
