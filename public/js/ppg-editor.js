@@ -127,22 +127,6 @@ window.PPG = (function (self) {
     docs[activeDoc].errors = errors;
 
     CodeMirror.startLinting(cm);
-
-    // for (var i = 0; i < errors.length; i++) {
-    //   var err = errors[i];
-    //   var msg = document.createElement('div');
-    //   var icon = msg.appendChild(document.createElement('span'));
-    //
-    //   icon.innerHTML = '!!';
-    //   icon.className = 'lint-error-icon';
-    //   msg.appendChild(document.createTextNode(err.message));
-    //   msg.className = 'lint-error';
-    //
-    //   lintWidgets.push(cm.addLineWidget(err.startLine - 1, msg, {
-    //     coverGutter: false,
-    //     noHScroll: true
-    //   }));
-    // }
   };
 
   function setActiveDocument(doc) {
