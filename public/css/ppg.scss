@@ -143,18 +143,75 @@ a {
         overflow: scroll;
         position: absolute;
         top: 24px;
-        bottom: 0;
+        bottom: 30px;
         left: 0;
         right: 0;
 
         pre {
           margin: 6px;
+          padding: 0;
+          border: none;
+          box-shadow: none;
+          background: transparent;
+          text-shadow: 0 1px #fff;
+          border-radius: 0;
 
-          &.server-log {
-            border: none;
-            box-shadow: none;
-            background: transparent;
-            text-shadow: 0 1px #fff;
+          &.compiler-output {
+            border-bottom: 1px solid #777;
+            padding-bottom: 8px;
+            box-shadow: 0 1px #fff;
+          }
+        }
+      }
+
+      .prompt {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 29px;
+        font: 10pt monospace;
+        line-height: 29px;
+        border-top: 1px solid $borderColor;
+        text-indent: 6px;
+        background: #eee;
+
+        span {
+          display: block;
+          height: 29px;
+          width: 14px;
+          background: #eee;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 2;
+        }
+
+        input:focus + span {
+          background: #fff;
+        }
+
+        input {
+          position: absolute;
+          background: transparent;
+          left: 0;
+          top: 0px;
+          width: 100%;
+          display: block;
+          padding: 0;
+          padding-left: 18px;
+          margin: 0;
+          height: 29px;
+          border: none;
+          outline: none;
+          box-shadow: none;
+          font: 10pt monospace;
+          -webkit-appearance: none;
+          appearance: none;
+          @include box-sizing(border-box);
+
+          &:focus {
+            background: #fff;
           }
         }
       }

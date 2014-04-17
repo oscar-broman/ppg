@@ -9,6 +9,7 @@ window.PPG = (function (self) {
   var $outputScroller = $output.find('.scroller');
   var $compilerOutput = $output.find('.compiler-output');
   var $serverLog = $output.find('.server-log');
+  var $prompt = $output.find('.prompt input');
 
   function clearOutput() {
     $compilerOutput.hide().empty();
@@ -110,6 +111,90 @@ window.PPG = (function (self) {
       .removeAttr('disabled')
       .removeClass('running');
     $('#stop-run').attr('disabled', true);
+  });
+
+  var promptHistory = [];
+  var promptHistoryIdx = null;
+
+  if (localStorage.ppgPromptHistory) {
+    promptHistory = JSON.parse(localStorage.ppgPromptHistory);
+  }
+
+  $prompt.on({
+    keydown: function(e) {
+      if (e.which === 38) {
+        if (!promptHistory.length) {
+          return false;
+        }
+
+        if (promptHistoryIdx === null) {
+          promptHistoryIdx = 0;
+        } else {
+          promptHistoryIdx = Math.min(promptHistoryIdx + 1, promptHistory.length - 1);
+        }
+
+        $prompt.val(promptHistory[promptHistoryIdx]);
+
+        return false;
+      } else if (e.which === 40) {
+        if (!promptHistory.length) {
+          return false;
+        }
+
+        if (promptHistoryIdx === null) {
+          promptHistoryIdx = 0;
+        } else {
+          promptHistoryIdx = Math.max(promptHistoryIdx - 1, 0);
+        }
+
+        $prompt.val(promptHistory[promptHistoryIdx]);
+
+        return false;
+      }
+    },
+    keyup: function(e) {
+      if (e.which === 13) {
+        var val = $.trim($prompt.val());
+
+        promptHistory.splice(0, 0, val);
+        promptHistoryIdx = null;
+
+        while (promptHistory.length > 100) {
+          promptHistory.pop();
+        }
+
+        socket.emit('run-line', {
+          code: val,
+          runId: runId
+        });
+
+        $prompt.val('');
+
+        localStorage.ppgPromptHistory = JSON.stringify(promptHistory);
+      }
+    }
+  });
+
+  $(window).on('keydown', function(e) {
+    if (e.shiftKey && (e.metaKey || e.ctrlKey)) {
+      if (e.which === 82) { // R
+        $('#run-code').trigger('click');
+
+        return false;
+      } else if (e.which === 83) { // S
+        $('#stop-run').trigger('click');
+
+        return false;
+      } else if (e.which === 70) { // F
+        if ($prompt.is(':focus')) {
+          self.setEditorFocus();
+        } else {
+          $prompt.focus();
+        }
+
+        return false;
+      }
+    }
   });
 
   return self;

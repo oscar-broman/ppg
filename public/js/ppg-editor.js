@@ -373,6 +373,10 @@ window.PPG = (function (self) {
     return false;
   });
 
+  self.setEditorFocus = function() {
+    cm.focus();
+  };
+
   self.updateEditorSize = function() {
     cm.setSize('100%', '100%');
   };
