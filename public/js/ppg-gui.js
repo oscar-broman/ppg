@@ -10,12 +10,12 @@ window.PPG = (function (self) {
 
   var separatorDrag = null;
 
-  if (localStorage.outputHeight) {
-    $output.height(localStorage.outputHeight);
-    $editor.css('bottom', +localStorage.outputHeight);
-  } else {
+  if (!localStorage.outputHeight) {
     localStorage.outputHeight = 300;
   }
+
+  $output.height(localStorage.outputHeight);
+  $editor.css('bottom', +localStorage.outputHeight);
 
 	$(window).on({
 	  load: function(e) {
