@@ -178,11 +178,15 @@ window.PPG = (function (self) {
   $(window).on('keydown', function(e) {
     if (e.shiftKey && (e.metaKey || e.ctrlKey)) {
       if (e.which === 82) { // R
-        $('#run-code').trigger('click');
+        if (!$('#run-code').attr('disabled')) {
+          $('#run-code').trigger('click');
+        }
 
         return false;
       } else if (e.which === 83) { // S
-        $('#stop-run').trigger('click');
+        if (!$('#stop-run').attr('disabled')) {
+          $('#stop-run').trigger('click');
+        }
 
         return false;
       } else if (e.which === 70) { // F
