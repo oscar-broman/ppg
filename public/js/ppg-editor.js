@@ -327,6 +327,8 @@ window.PPG = (function (self) {
 
       localStorage.filesBak = localStorage.files;
       localStorage.removeItem('files');
+
+      saveDocuments();
     }
   }
 
