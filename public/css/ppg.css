@@ -97,7 +97,7 @@ a {
         background-image: -webkit-linear-gradient(#fefefe 0%, #f1f1f1 50%, #e1e1e1 50%, #e0e0e0 100%);
         background-image: linear-gradient(#fefefe 0%, #f1f1f1 50%, #e1e1e1 50%, #e0e0e0 100%); }
       .app .main .output .scroller {
-        overflow: scroll;
+        overflow: auto;
         position: absolute;
         top: 24px;
         bottom: 30px;
