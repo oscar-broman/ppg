@@ -36,7 +36,6 @@ a {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     background-color: white;
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #eeeeee));
     background-image: -webkit-linear-gradient(left, white, #eeeeee);
     background-image: linear-gradient(to right,white, #eeeeee); }
     .app .sidebar .document-list .list-group-item {
@@ -64,7 +63,6 @@ a {
       padding-left: 8px;
       width: 100%;
       background-color: white;
-      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #e5e5e5));
       background-image: -webkit-linear-gradient(white, #e5e5e5);
       background-image: linear-gradient(white, #e5e5e5); }
     .app .main #run-code .fa {
@@ -96,7 +94,6 @@ a {
         cursor: resize;
         cursor: ns-resize;
         background-color: #fefefe;
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fefefe), color-stop(50%, #f1f1f1), color-stop(50%, #e1e1e1), color-stop(100%, #e0e0e0));
         background-image: -webkit-linear-gradient(#fefefe 0%, #f1f1f1 50%, #e1e1e1 50%, #e0e0e0 100%);
         background-image: linear-gradient(#fefefe 0%, #f1f1f1 50%, #e1e1e1 50%, #e0e0e0 100%); }
       .app .main .output .scroller {
