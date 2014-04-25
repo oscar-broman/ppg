@@ -6,6 +6,7 @@
     "bootstrap": "latest",
     "bourbon": "latest",
     "font-awesome": "latest",
-    "codemirror": "latest"
+    "codemirror": "latest",
+    "oauth-js": "latest"
   }
 }

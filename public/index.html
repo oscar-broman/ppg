@@ -17,6 +17,14 @@
     <div class="sidebar">
       <div class="document-list list-group">
       </div>
+      <h4><i class="fa fa-github"></i> GitHub integration</h4>
+      <div class="github-gists list-group"></div>
+      <div class="github-signin">
+        <p>
+          Sign in with your GitHub account to share your documents.
+        </p>
+        <button id="github-signin" class="btn btn-default btn-block">Sign in</button>
+      </div>
     </div>
     <div class="main">
       <div class="toolbar">
@@ -55,6 +63,7 @@
   <script src="components/codemirror/addon/search/search.js"></script>
   <script src="components/codemirror/addon/search/searchcursor.js"></script>
   <script src="components/codemirror/addon/search/match-highlighter.js"></script>
+  <script src="components/oauth-js/oauth.min.js"></script>
   <script src="js/codemirror-lint-custom.js"></script>
   <script src="socket.io/socket.io.js"></script>
   <script src="js/codemirror-pawn.js"></script>
