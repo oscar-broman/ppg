@@ -8,12 +8,16 @@ window.PPG = (function (self) {
   var $output = $app.find('.output');
   var $outputScroller = $output.find('.scroller');
   var $compilerOutput = $output.find('.compiler-output');
+  var $compilerOutputLST = $output.find('.compiler-output-lst');
   var $serverLog = $output.find('.server-log');
   var $prompt = $output.find('.prompt input');
+  var $runButtons = $('#run-code,#compile-lst,#compile-asm,#compile-macros');
+  var $stopButton = $('#stop-run');
+  var $outputFields = $output.find('.server-log,.compiler-output,.compiler-output-lst')
 
   function clearOutput() {
-    $compilerOutput.hide().empty();
-    $serverLog.empty();
+    $outputFields.hide().empty();
+    $serverLog.show();
   }
 
   $('#run-code').on('click', function(e) {
@@ -21,7 +25,8 @@ window.PPG = (function (self) {
     self.clearEditorErrors();
 
     running = true;
-    $('#run-code,#stop-run').attr('disabled', true);
+    $runButtons.attr('disabled', true);
+    $stopButton.attr('disabled', true);
 
     socket.emit('run-code', {
       code: self.getCurrentCode(),
@@ -32,6 +37,30 @@ window.PPG = (function (self) {
     });
   });
 
+  $('#compile-lst').on('click', function(e) {
+    $runButtons.attr('disabled', true);
+    $stopButton.attr('disabled', true);
+
+    clearOutput();
+
+    socket.emit('compile-lst', {
+      code: self.getCurrentCode(),
+      runId: ++runId
+    });
+  });
+
+  socket.on('compiler-lst', function(output) {
+    if (output.runId !== runId) {
+      return;
+    }
+
+    $runButtons.removeAttr('disabled');
+
+    $compilerOutputLST.show();
+
+    CodeMirror.runMode(output.data, 'text/x-pawn', $compilerOutputLST.get(0));
+  });
+
   $('#stop-run').on('click', function(e) {
     socket.emit('stop-run', {
       runId: runId
@@ -39,13 +68,13 @@ window.PPG = (function (self) {
   });
 
   socket.on('connect', function() {
-    $('#run-code').removeAttr('disabled');
-    $('#stop-run').attr('disabled', true);
+    $runButtons.removeAttr('disabled');
+    $stopButton.attr('disabled', true);
   });
 
   socket.on('disconnect', function() {
-    $('#run-code').attr('disabled', true);
-    $('#stop-run').attr('disabled', true);
+    $runButtons.attr('disabled', true);
+    $stopButton.attr('disabled', true);
 
     running = false;
   });
@@ -107,7 +136,7 @@ window.PPG = (function (self) {
 
     running = false;
 
-    $('#run-code')
+    $runButtons
       .removeAttr('disabled')
       .removeClass('running');
     $('#stop-run').attr('disabled', true);

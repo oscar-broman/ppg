@@ -34,6 +34,9 @@
         <button class="btn btn-danger" id="stop-run" disabled>
           <i class="fa fa-stop"></i> Stop
         </button>
+        <button class="btn btn-default" id="compile-lst" disabled>
+          <i class="fa fa-code"></i> LST
+        </button>
       </div>
       <div class="editor">
 
@@ -42,6 +45,7 @@
         <div class="separator"></div>
         <div class="scroller">
           <pre class="compiler-output" style="display:none"></pre>
+          <pre class="compiler-output-lst cm-s-default cm-s-pawn" style="display:none"></pre>
           <pre class="server-log"></pre>
         </div>
         <div class="prompt">
@@ -63,6 +67,7 @@
   <script src="components/codemirror/addon/search/search.js"></script>
   <script src="components/codemirror/addon/search/searchcursor.js"></script>
   <script src="components/codemirror/addon/search/match-highlighter.js"></script>
+  <script src="components/codemirror/addon/runmode/runmode.js"></script>
   <script src="components/oauth-js/oauth.min.js"></script>
   <script src="js/codemirror-lint-custom.js"></script>
   <script src="socket.io/socket.io.js"></script>
