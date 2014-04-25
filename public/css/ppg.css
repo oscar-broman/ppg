@@ -160,29 +160,29 @@ a {
           .app .main .output .prompt input:focus {
             background: #fff; }
 
-.cm-s-pawn .cm-comment {
+.cm-s-default.cm-s-pawn .cm-comment {
   color: #272; }
-.cm-s-pawn .cm-meta {
+.cm-s-default.cm-s-pawn .cm-meta {
   color: #900; }
-.cm-s-pawn .cm-keyword {
+.cm-s-default.cm-s-pawn .cm-keyword {
   color: #00c;
   font-weight: bold; }
-.cm-s-pawn .cm-number {
+.cm-s-default.cm-s-pawn .cm-number {
   color: #c00; }
-.cm-s-pawn .cm-string {
+.cm-s-default.cm-s-pawn .cm-string {
   color: #555; }
-.cm-s-pawn .CodeMirror-matchingbracket {
+.cm-s-default.cm-s-pawn .CodeMirror-matchingbracket {
   color: #f00;
   font-weight: bold; }
-.cm-s-pawn .CodeMirror-foldgutter-open,
-.cm-s-pawn .CodeMirror-foldgutter-folded {
+.cm-s-default.cm-s-pawn .CodeMirror-foldgutter-open,
+.cm-s-default.cm-s-pawn .CodeMirror-foldgutter-folded {
   color: #777; }
-  .cm-s-pawn .CodeMirror-foldgutter-open:hover,
-  .cm-s-pawn .CodeMirror-foldgutter-folded:hover {
+  .cm-s-default.cm-s-pawn .CodeMirror-foldgutter-open:hover,
+  .cm-s-default.cm-s-pawn .CodeMirror-foldgutter-folded:hover {
     color: #000; }
-.cm-s-pawn .CodeMirror-foldmarker {
+.cm-s-default.cm-s-pawn .CodeMirror-foldmarker {
   text-shadow: none; }
-.cm-s-pawn .cm-matchhighlight {
+.cm-s-default.cm-s-pawn .cm-matchhighlight {
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFklEQVQI12NgYGBgkKzc8x9CMDAwAAAmhwSbidEoSQAAAABJRU5ErkJggg==);
   background-position: bottom;
   background-repeat: repeat-x; }
