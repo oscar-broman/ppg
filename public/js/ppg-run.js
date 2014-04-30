@@ -8,12 +8,14 @@ window.PPG = (function (self) {
   var $output = $app.find('.output');
   var $outputScroller = $output.find('.scroller');
   var $compilerOutput = $output.find('.compiler-output');
-  var $compilerOutputLST = $output.find('.compiler-output-lst');
+  var $compilerOutputLst = $output.find('.compiler-output-lst');
+  var $compilerOutputAsm = $output.find('.compiler-output-asm');
   var $serverLog = $output.find('.server-log');
   var $prompt = $output.find('.prompt input');
   var $runButtons = $('#run-code,#compile-lst,#compile-asm,#compile-macros');
   var $stopButton = $('#stop-run');
-  var $outputFields = $output.find('.server-log,.compiler-output,.compiler-output-lst')
+  var $outputFields = $output.find('.server-log,.compiler-output,.compiler-output-lst,.compiler-output-asm')
+  var activeMode = null;
 
   function clearOutput() {
     $outputFields.hide().empty();
@@ -27,6 +29,8 @@ window.PPG = (function (self) {
     running = true;
     $runButtons.attr('disabled', true);
     $stopButton.attr('disabled', true);
+
+    activeMode = 'run';
 
     socket.emit('run-code', {
       code: self.getCurrentCode(),
@@ -43,7 +47,23 @@ window.PPG = (function (self) {
 
     clearOutput();
 
+    activeMode = 'lst';
+
     socket.emit('compile-lst', {
+      code: self.getCurrentCode(),
+      runId: ++runId
+    });
+  });
+
+  $('#compile-asm').on('click', function(e) {
+    $runButtons.attr('disabled', true);
+    $stopButton.attr('disabled', true);
+
+    clearOutput();
+
+    activeMode = 'asm';
+
+    socket.emit('compile-asm', {
       code: self.getCurrentCode(),
       runId: ++runId
     });
@@ -56,9 +76,21 @@ window.PPG = (function (self) {
 
     $runButtons.removeAttr('disabled');
 
-    $compilerOutputLST.show();
+    $compilerOutputLst.show();
 
-    CodeMirror.runMode(output.data, 'text/x-pawn', $compilerOutputLST.get(0));
+    CodeMirror.runMode(output.data, 'text/x-pawn', $compilerOutputLst.get(0));
+  });
+
+  socket.on('compiler-asm', function(output) {
+    if (output.runId !== runId) {
+      return;
+    }
+
+    $runButtons.removeAttr('disabled');
+
+    $compilerOutputAsm.show();
+
+    CodeMirror.runMode(output.data, 'text/x-pawn', $compilerOutputAsm.get(0));
   });
 
   $('#stop-run').on('click', function(e) {
@@ -101,6 +133,15 @@ window.PPG = (function (self) {
     $outputScroller.scrollTop(
       $outputScroller[0].scrollHeight - $outputScroller.height()
     );
+
+    if (output.failed) {
+      running = false;
+
+      $runButtons
+        .removeAttr('disabled')
+        .removeClass('running');
+      $('#stop-run').attr('disabled', true);
+    }
   });
 
   socket.on('compiler-errors', function(output) {
