@@ -90,7 +90,11 @@ window.PPG = (function (self) {
 
     $compilerOutputAsm.show();
 
-    CodeMirror.runMode(output.data, 'text/x-pawn', $compilerOutputAsm.get(0));
+    output.data = output.data.replace(/; line ([0-9a-f]+)/gi, function(match, lineNumber) {
+      return '; line ' + parseInt(lineNumber, 16);
+    });
+
+    CodeMirror.runMode(output.data, 'text/x-pawn-asm', $compilerOutputAsm.get(0));
   });
 
   $('#stop-run').on('click', function(e) {
