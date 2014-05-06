@@ -16,10 +16,13 @@ window.PPG = (function (self) {
   var $stopButton = $('#stop-run');
   var $outputFields = $output.find('.server-log,.compiler-output,.compiler-output-lst,.compiler-output-asm')
   var activeMode = null;
+  var lastInput = null;
+  var macroStep, numMacroSteps;
 
   function clearOutput() {
     $outputFields.hide().empty();
     $serverLog.show();
+    $output.find('.macro-stepper').hide();
   }
 
   $('#run-code').on('click', function(e) {
@@ -69,6 +72,73 @@ window.PPG = (function (self) {
     });
   });
 
+  $('#compile-macros').on('click', function(e) {
+    $runButtons.attr('disabled', true);
+    $stopButton.attr('disabled', true);
+
+    clearOutput();
+
+    activeMode = 'macros';
+
+    lastInput = self.getCurrentCode();
+
+    socket.emit('compile-lst', {
+      code: lastInput,
+      runId: ++runId
+    });
+  });
+
+  function setMacroStep(idx) {
+    var dir = macroStep - idx;
+    macroStep = Math.max(1, Math.min(idx, numMacroSteps));
+
+    $('.macro-stepper .current-step').text([macroStep, numMacroSteps].join(' / '));
+
+    $('.compiler-output-lst .repl-line').each(function() {
+      var $this = $(this);
+      var step = +$this.data('step');
+
+      $this
+        .toggleClass('behind', step < macroStep)
+        .toggleClass('active', step === macroStep)
+        .toggleClass('ahead', step > macroStep)
+        .toggleClass('dir-left', step === macroStep && dir < 0)
+        .toggleClass('dir-right', step === macroStep && dir > 0)
+    });
+
+    if (macroStep !== 1 && macroStep !== numMacroSteps) {
+      var scrollerTop = $outputScroller.scrollTop();
+      var scrollerHeight = $outputScroller.height();
+      var activeTop = $output.find('.repl-line.active').position().top + scrollerTop;
+
+      if (activeTop < scrollerTop + 60) {
+        $outputScroller.scrollTop(activeTop - 60);
+      } else if (activeTop > scrollerTop + scrollerHeight - 40) {
+        $outputScroller.scrollTop(activeTop - scrollerHeight + 40);
+      }
+    }
+  };
+
+  $('.macro-stepper .forward').on({
+    click: function() {
+      setMacroStep(macroStep + 1);
+    }
+  });
+
+  $('.macro-stepper .backward').on({
+    click: function() {
+      setMacroStep(macroStep - 1);
+    }
+  });
+
+  function escape(str) {
+    return str.replace(/&/g,'&amp;')
+              .replace(/</g,'&lt;')
+              .replace(/"/g,'&quot;')
+              .replace(/'/g,'&#039;')
+              .replace(/</g,'&lt;');
+  }
+
   socket.on('compiler-lst', function(output) {
     if (output.runId !== runId) {
       return;
@@ -78,7 +148,66 @@ window.PPG = (function (self) {
 
     $compilerOutputLst.show();
 
-    CodeMirror.runMode(output.data, 'text/x-pawn', $compilerOutputLst.get(0));
+    if (activeMode === 'macros') {
+      var outputNode = $compilerOutputLst.get(0);
+      var rawLines = lastInput.split('\n').map(function(line) {
+        return line || ' ';
+      });
+      var lines = rawLines.map(function(line) {
+        return [];
+      });
+
+      var step = 1;
+      var lastIdx = output.macroReplacements.length - 1;
+
+      output.macroReplacements.forEach(function(repl, i) {
+        var l = repl.line - 1;
+
+        var line = rawLines[l];
+
+        rawLines[l] = line.substr(0, repl.col) + repl.replacement + line.substr(repl.col + repl.start_len);
+
+        line = escape(line.substr(0, repl.col)) +
+               '<span class="repl">' +
+               '<span class="old">' + escape(line.substr(repl.col, repl.start_len)) + '</span>' +
+               '<span class="new">' + escape(repl.replacement) + '</span>' +
+               '</span>' +
+               escape(line.substr(repl.col + repl.start_len));
+
+        var classes = ['repl-line', 'ahead'];
+
+        if (!lines[l].length) {
+          classes.push('first');
+        }
+
+        if (i === lastIdx || output.macroReplacements[i + 1].line !== repl.line) {
+          classes.push('last');
+        }
+
+        line = '<span class="' + classes.join(' ') + '" data-step="' + (++step) + '">' + line + '</span>';
+
+        lines[l].push(line);
+      });
+
+      numMacroSteps = ++step === 2 ? 1 : step;
+      macroStep = 1;
+
+      lines.forEach(function(line, l) {
+        if (line.length === 0) {
+          lines[l] = '<span class="line">' + escape(rawLines[l]) + '</span>';
+        } else {
+          lines[l] = lines[l].join('');
+        }
+      });
+
+      outputNode.innerHTML = lines.join('');
+
+      $output.find('.macro-stepper').show();
+
+      setMacroStep(1);
+    } else {
+      CodeMirror.runMode(output.data, 'text/x-pawn', $compilerOutputLst.get(0));
+    }
   });
 
   socket.on('compiler-asm', function(output) {

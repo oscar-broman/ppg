@@ -8,7 +8,7 @@
 })(function(CodeMirror) {
 "use strict";
 
-CodeMirror.defineMode("pawn", function(config, parserConfig) {
+CodeMirror.defineMode("pawn-asm", function(config, parserConfig) {
   var indentUnit = config.indentUnit,
       statementIndentUnit = parserConfig.statementIndentUnit || indentUnit,
       dontAlignCalls = parserConfig.dontAlignCalls,
@@ -254,7 +254,7 @@ CodeMirror.defineMode("pawn", function(config, parserConfig) {
   }
 
   def(["text/x-pawn-asm"], {
-    name: "pawn",
+    name: "pawn-asm",
     atoms: words('load.pri load.alt load.s.pri load.s.alt lref.pri ' +
                  'lref.alt lref.s.pri lref.s.alt load.i lodb.i const.pri ' +
                  'const.alt addr.pri addr.alt stor.pri stor.alt ' +
