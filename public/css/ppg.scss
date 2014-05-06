@@ -354,6 +354,14 @@ a {
       &.dir-right .repl {
         @include transform(translateY(0));
         @include animation(repl-silde-down .7s ease);
+
+        .new {
+          @include transform(translateY(-18px));
+        }
+
+        .old {
+          @include transform(translateY(18px));
+        }
       }
 
       .repl {
