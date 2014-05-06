@@ -119,10 +119,8 @@ window.PPG = (function (self) {
             .data('gist-idx', idx)
         );
       });
-
-      console.log(data)
     }).fail(function(err) {
-      console.log(err);
+      alert('Failed to load gists!');
     });
   }
 
