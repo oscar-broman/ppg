@@ -30,14 +30,14 @@ a {
     bottom: 0;
     width: 250px;
     overflow-y: auto;
-    border-right: 1px solid #777777;
+    border-right: 1px solid #777;
     padding: 10px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    background-color: white;
-    background-image: -webkit-linear-gradient(left, white, #eeeeee);
-    background-image: linear-gradient(to right,white, #eeeeee); }
+    background-color: #fff;
+    background-image: -webkit-linear-gradient(left, #fff, #eee);
+    background-image: linear-gradient(to right,#fff, #eee); }
     .app .sidebar .document-list .list-group-item {
       white-space: nowrap;
       overflow: hidden;
@@ -59,12 +59,12 @@ a {
       height: 50px;
       line-height: 47px;
       min-height: 50px;
-      border-bottom: 1px solid #777777;
+      border-bottom: 1px solid #777;
       padding-left: 8px;
       width: 100%;
-      background-color: white;
-      background-image: -webkit-linear-gradient(white, #e5e5e5);
-      background-image: linear-gradient(white, #e5e5e5); }
+      background-color: #fff;
+      background-image: -webkit-linear-gradient(#fff, #e5e5e5);
+      background-image: linear-gradient(#fff, #e5e5e5); }
     .app .main #run-code .fa {
       width: 13px; }
     .app .main #run-code .fa-repeat, .app .main #run-code.running .fa-play {
@@ -89,7 +89,7 @@ a {
       min-height: 100px !important; }
       .app .main .output .separator {
         height: 24px;
-        border: 1px solid #777777;
+        border: 1px solid #777;
         border-style: solid none;
         cursor: resize;
         cursor: ns-resize;
@@ -131,9 +131,9 @@ a {
         height: 41px;
         line-height: 40px;
         background-color: #eaeaea;
-        background-image: -webkit-linear-gradient(#eaeaea, white);
-        background-image: linear-gradient(#eaeaea, white);
-        border-bottom: 1px solid #777777; }
+        background-image: -webkit-linear-gradient(#eaeaea, #fff);
+        background-image: linear-gradient(#eaeaea, #fff);
+        border-bottom: 1px solid #777; }
         .app .main .output .macro-stepper button {
           text-align: center;
           padding: 0;
@@ -162,7 +162,7 @@ a {
         height: 29px;
         font: 10pt monospace;
         line-height: 29px;
-        border-top: 1px solid #777777;
+        border-top: 1px solid #777;
         text-indent: 6px;
         background: #eee; }
         .app .main .output .prompt span {
@@ -314,3 +314,5 @@ a {
     -ms-transform: translateY(-18px);
     -o-transform: translateY(-18px);
     transform: translateY(-18px); } }
+
+/*# sourceMappingURL=ppg.css.map */

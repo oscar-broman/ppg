@@ -1,7 +1,7 @@
 'use strict';
 
 window.PPG = (function (self) {
-  var socket = io.connect(location.protocol + '//' + location.hostname);
+  var socket = io.connect(location.protocol + '//' + location.host);
   var runId = 0;
   var running = false;
   var $app = $('.app');
