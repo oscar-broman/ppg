@@ -206,7 +206,11 @@ window.PPG = (function (self) {
 
       setMacroStep(1);
     } else {
-      CodeMirror.runMode(output.data, 'text/x-pawn', $compilerOutputLst.get(0));
+      var value = output.data;
+
+      value = value.replace(/(^#line \d+$\n\s*)+(#line \d+)/mg, '$2').trimLeft();
+
+      CodeMirror.runMode(value, 'text/x-pawn', $compilerOutputLst.get(0));
     }
   });
 
