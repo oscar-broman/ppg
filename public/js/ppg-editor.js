@@ -7,6 +7,8 @@ window.PPG = (function (self) {
   var $documentList = $app.find('.document-list');
 
   var lintErrors = [];
+  var keyMap = localStorage.keyMap || 'default';
+  $('.keymap-current').text(keyMap);
   var cm = CodeMirror($editor.get(0), {
     autoCloseBrackets: true,
     autofocus: true,
@@ -26,6 +28,7 @@ window.PPG = (function (self) {
     showCursorWhenSelecting: true,
     smartIndent: true,
     tabSize: 4,
+    keyMap: keyMap,
     theme: 'default pawn',
     lint: {
       getAnnotations: function() {
@@ -352,6 +355,15 @@ window.PPG = (function (self) {
     setActiveDocument(activeDoc);
     saveDocuments();
   }
+  
+  $('.select-keymap a').on('click', function (e) {
+    keyMap = $(this).data('keymap');
+    cm.setOption('keyMap', keyMap);
+    localStorage.keyMap = keyMap;
+    $('.keymap-current').text(keyMap);
+
+    e.preventDefault();
+  });
 
   $documentList.on('click mouseup contextmenu', 'a', function(e) {
     if (e.type === 'contextmenu') {

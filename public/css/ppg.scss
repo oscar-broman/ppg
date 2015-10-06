@@ -92,6 +92,13 @@ a {
       padding-left: 8px;
       width: 100%;
       @include linear-gradient(#fff, #e5e5e5);
+			
+			.btn-group.pull-right,
+			.btn.pull-right {
+				display: inline-block;
+				float: right;
+				margin: 7px 7px 0 0;
+			}
     }
 
     #run-code {

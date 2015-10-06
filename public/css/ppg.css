@@ -65,6 +65,11 @@ a {
       background-color: #fff;
       background-image: -webkit-linear-gradient(#fff, #e5e5e5);
       background-image: linear-gradient(#fff, #e5e5e5); }
+      .app .main .toolbar .btn-group.pull-right,
+      .app .main .toolbar .btn.pull-right {
+        display: inline-block;
+        float: right;
+        margin: 7px 7px 0 0; }
     .app .main #run-code .fa {
       width: 13px; }
     .app .main #run-code .fa-repeat, .app .main #run-code.running .fa-play {

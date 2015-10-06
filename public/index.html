@@ -43,6 +43,18 @@
         <button class="btn btn-default" id="compile-macros" disabled>
           <i class="fa fa-wrench"></i> Macros
         </button>
+        <div class="btn-group pull-right">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Keymap: <span class="keymap-current"></span> <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu pull-right select-keymap">
+            <li><a href="#" data-keymap="default">Default</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#" data-keymap="vim">Vim</a></li>
+            <li><a href="#" data-keymap="emacs">Emacs</a></li>
+            <li><a href="#" data-keymap="sublime">Sublime</a></li>
+          </ul>
+        </div>
       </div>
       <div class="editor">
 
@@ -69,7 +81,9 @@
   <script src="components/jquery/dist/jquery.min.js"></script>
   <script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="components/codemirror/lib/codemirror.js"></script>
-  <script src="components/codemirror/addon/edit/matchbrackets.js"></script>
+  <script src="components/codemirror/keymap/vim.js"></script>
+  <script src="components/codemirror/keymap/emacs.js"></script>
+  <script src="components/codemirror/keymap/sublime.js"></script>
   <script src="components/codemirror/addon/edit/closebrackets.js"></script>
   <script src="components/codemirror/addon/fold/foldcode.js"></script>
   <script src="components/codemirror/addon/fold/foldgutter.js"></script>
